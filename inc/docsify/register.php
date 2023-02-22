@@ -5,6 +5,7 @@
 namespace MBC\docsify;
 class Register extends WPDocsify {
     public function __construct($arr = array()) {
+			error_log(__METHOD__);
       	/* Array of pages */
 		if(is_array($arr)){
 			/* is a single page */
@@ -19,7 +20,8 @@ class Register extends WPDocsify {
 			}
 		}
     }
-    public function base($dir = '') {
+  public static function base($dir = '') {
+		error_log(__METHOD__);
         if(empty($dir)) return;
 		/* set documentation directory */
 		parent::$baseDir = $dir;

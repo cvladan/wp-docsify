@@ -9,6 +9,8 @@ class Git extends WPDocsify {
 		self::admin();
 	}
     public static function admin(){
+        error_log(__METHOD__);
+
        $git_icon = file_get_contents(plugin_dir_path(__DIR__).'assets/img/giticon.svg');
        $git_label_template = '<span class="with-icon">%s%s</span>';
        $git_label = sprintf($git_label_template, $git_icon, __('Add Git Repos', 'textdomain'));

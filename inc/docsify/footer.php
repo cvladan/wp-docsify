@@ -12,6 +12,7 @@ class Footer extends WPDocsify {
 		},1,10);
 	}
     public static function register(){
+			error_log(__METHOD__);
         $globals = parent::$globals;
 		$wpdocsify_js = file_get_contents( plugin_dir_path(__DIR__).'assets/js/wpdocsify.min.js' );
 		$format = '<script type="text/javascript">%s window.WPDocsify.globals = %s;</script>';

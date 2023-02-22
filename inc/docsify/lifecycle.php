@@ -19,6 +19,10 @@ class Lifecycle extends WPDocsify
 		/* lifecycle array */
 		$lifecycle = array();
 
+		error_log(__METHOD__);
+		# error_log(json_encode(self::$lifecycle, JSON_PRETTY_PRINT) . "\n");
+		# error_log(json_encode(get_called_class(), JSON_PRETTY_PRINT) . "\n");
+
 		foreach (parent::$lifecycle as $key => $value) {
 
 			/* allow key to be in lifecycle */

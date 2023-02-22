@@ -23,6 +23,7 @@ class Setup extends WPDocsify {
 				parent::$baseDir = plugins_url('inc/assets/docs/', plugin_dir_path(__DIR__));
 			}
 		} else $location = parent::$baseDir;
+		error_log(__METHOD__);
 		/* if admin page is empty create default */
 		if(empty(parent::$adminpage)) parent::$adminpage = array(
 			"domain"=>"WPDocsify",

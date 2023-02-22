@@ -1,12 +1,16 @@
 <?php
+
 /**
  * Wordpress Implementation of Docsify
  * This Class is used to implement Docsify and extend backend functionality with Wordpress
  *
  * @package MBC\Docsify
  */
+
 namespace MBC\docsify;
-class WPDocsify {
+
+class WPDocsify
+{
 	/* public string site url */
 	public static $site_url = "";
 	/* public string site ext */
@@ -22,8 +26,8 @@ class WPDocsify {
 	/* public docsify instance config */
 	public static $config = array(
 		/* default */
-		"executeScript"=> true,
-		"nativeEmoji"=> true,
+		"executeScript" => true,
+		"nativeEmoji" => true,
 		"maxLevel" => 4,
 		"subMaxLevel" => 2,
 		"loadSidebar" => "_sidebar.md",
@@ -37,48 +41,78 @@ class WPDocsify {
 	);
 	/* public boolean for custom stylesheet replacement */
 	public static $replace_stylesheet = false;
+	
 	/* prism language support array */
 	public static $prism = array();
+
 	/* prism default lts version */
 	public static $prismlts = "1.29.0";
+
 	/* Vue.js Config */
 	public static $vue = array(
-		"version"=> "vue@3",
-		"control"=> "production",
-		"enabled"=> true
+		"version" => "vue@3",
+		"control" => "production",
+		"enabled" => true
 	);
+
 	/* plugin Docsify Lifecycle */
 	public static $lifecycle = array(
-		"init"=> array(),
-		"beforeEach"=> array(),
-		"afterEach"=> array(),
-		"doneEach"=> array(),
-		"mounted"=> array(),
-		"ready"=> array()
+		"init" => array(),
+		"beforeEach" => array(),
+		"afterEach" => array(),
+		"doneEach" => array(),
+		"mounted" => array(),
+		"ready" => array()
 	);
+
 	/* globals wordpress */
 	public static $globals = array();
-	public static function init() {
+
+	public static function init()
+	{
+		error_log(__METHOD__);
 		Setup::init();
 	}
-	public static function admin(){
+
+	public static function admin()
+	{
+		error_log(__METHOD__);
 		Admin::init();
 	}
+
+	/* Register new Sub Documention Pages */
+	public static function register($arr) {
+		/* Array of pages */
+		if(is_array($arr)){
+			/* is a single page */
+			if( isset($arr['title']) ) array_push(self::$pages, $arr);
+			/* is multiple pages */
+			else {
+				/* each page */
+				foreach($arr as $page){
+					/* is page an array of settings */
+					if(is_array($page)) array_push(self::$pages, $page);
+				}
+			}
+		}
+	}
 }
+
+#
+#
 foreach (glob(__DIR__ . "/docsify/*.php") as $filename) {
 	require_once $filename;
 }
 
-add_action('init', function(){
-	add_action( 'admin_enqueue_scripts',function($hook){
+#
+#
+add_action('init', function () {
+	add_action('admin_enqueue_scripts', function ($hook) {
 		wp_enqueue_style('wp-docsify-mainstyle', plugins_url('/inc/assets/css/main.css', __DIR__));
-	},10);	
+	}, 10);
 	WPDocsify::init();
-	add_action('admin_menu', function(){
+	add_action('admin_menu', function () {
 		WPDocsify::admin();
-	},10);
+	}, 10);
 	Git::register();
-},10);
-
-
-      
+}, 10);

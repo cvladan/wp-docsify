@@ -1,6 +1,6 @@
 <?php
 /**
- * Wordpress Docisfy
+ * Wordpress Docsify
  *
  * A simple and lightweight plugin to create a Wordpress Documentation.
  * This plugin is based on the Docsify project.
