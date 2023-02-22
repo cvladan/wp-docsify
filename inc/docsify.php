@@ -47,7 +47,7 @@ class WPDocsify {
 		"control"=> "production",
 		"enabled"=> true
 	);
-	/* plugin Docsify Lifecylce */
+	/* plugin Docsify Lifecycle */
 	public static $lifecycle = array(
 		"init"=> array(),
 		"beforeEach"=> array(),
