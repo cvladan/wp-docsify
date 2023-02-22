@@ -60,7 +60,7 @@ class Handler extends WPDocsify {
 					"basePath"=> $dir,  /* base directory */
 				),$config)
 			),
-			Lifecylce::register()
+			Lifecycle::register()
 		);
 		/* return early */
 		return;
@@ -95,7 +95,7 @@ class Handler extends WPDocsify {
 					"sidebar" => $config['loadsidebar'], /* sidebar */
 				)
 			),
-			Lifecylce::register()
+			Lifecycle::register()
 		);
 		/* return early */
 		return;
